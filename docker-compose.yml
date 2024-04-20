@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  inventory_management_dev:
+    container_name: inventory_management_dev
+    image: inventory_management_dev:1.0.0
+    build:
+      context: .
+      target: development
+    command: npm run start:dev
+    env_file:
+      - .env
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - ./:/usr/src/app
+    restart: unless-stopped
+
+networks:
+  default:
+    driver: bridge
