@@ -20,8 +20,15 @@ export enum GENDER {
 	},
 })
 export class Supplier extends BaseEntity {
-	@Prop({ required: true, minlength: 2, maxlength: 60 })
-	supplier_name: string;
+	@Prop({
+		required: true,
+		minlength: 2,
+		maxlength: 60,
+		set: (name: string) => {
+			return name.trim();
+		},
+	})
+	name: string;
 
 	@Prop({
 		match: /^([+]\d{2})?\d{10}$/,

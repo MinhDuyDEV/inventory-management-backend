@@ -3,6 +3,7 @@ import mongoose, { HydratedDocument } from 'mongoose';
 import { UserRole } from '@modules/user-roles/entities/user-roles.entity';
 import { BaseEntity } from '@modules/shared/base/base.entity';
 import { Address, AddressSchema } from '@modules/shared/base/address.entity';
+import { Transform, Type } from 'class-transformer';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -68,7 +69,10 @@ export class User extends BaseEntity {
 	})
 	avatar: string;
 
-	@Prop()
+	@Prop({
+		required: true,
+		default: new Date(),
+	})
 	date_of_birth: Date;
 
 	@Prop({
@@ -80,6 +84,14 @@ export class User extends BaseEntity {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: UserRole.name,
 	})
+	@Type(() => UserRole)
+	@Transform(
+		(value) => {
+			console.log(value);
+			value.obj.role?.name;
+		},
+		{ toClassOnly: true },
+	)
 	role: UserRole;
 
 	@Prop({

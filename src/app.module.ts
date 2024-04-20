@@ -9,6 +9,7 @@ import { OrdersModule } from '@modules/orders/orders.module';
 import { ProductsModule } from '@modules/products/products.module';
 import { UserRolesModule } from '@modules/user-roles/user-roles.module';
 import { SuppliersModule } from '@modules/suppliers/suppliers.module';
+import { InventoriesModule } from '@modules/inventories/inventories.module';
 
 @Module({
 	imports: [
@@ -42,6 +43,7 @@ import { SuppliersModule } from '@modules/suppliers/suppliers.module';
 		ProductsModule,
 		UserRolesModule,
 		SuppliersModule,
+		InventoriesModule,
 	],
 	controllers: [],
 	providers: [],
