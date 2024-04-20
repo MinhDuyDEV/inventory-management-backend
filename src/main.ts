@@ -5,13 +5,11 @@ import { Logger } from '@nestjs/common';
 import { DatabaseConfig } from './configs/configuration.config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const config_service = app.get(ConfigService);
-  const logger = new Logger(bootstrap.name);
-  const port = config_service.get<number>('port');
-  const database_env = config_service.get<DatabaseConfig>('database');
-  logger.debug(port);
-  logger.debug(database_env);
-  await app.listen(3000);
+	const app = await NestFactory.create(AppModule);
+	const config_service = app.get(ConfigService);
+	const logger = new Logger(bootstrap.name);
+	const database_env = config_service.get<DatabaseConfig>('database');
+	logger.debug(database_env);
+	await app.listen(3000);
 }
 bootstrap();
