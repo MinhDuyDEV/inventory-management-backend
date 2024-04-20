@@ -1,5 +1,6 @@
 import { Category } from '@modules/categories/entities/category.entity';
 import { Inventory } from '@modules/inventories/entities/inventory.entity';
+import { BaseEntity } from '@modules/shared/base/base.entity';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 
@@ -15,7 +16,7 @@ export type ProductDocument = HydratedDocument<Product>;
 		virtuals: true, // Thêm vào option này
 	},
 })
-export class Product {
+export class Product extends BaseEntity {
 	@Prop({
 		required: true,
 		minlength: 2,

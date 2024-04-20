@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { UserRoles } from './entities/user-roles.entity';
+import { UserRole } from './entities/user-roles.entity';
 import { UserRolesRepositoryInterface } from './interfaces/user-roles.interface';
-import { BaseServiceAbstract } from './services/base/base.abstract.service';
+import { BaseServiceAbstract } from 'src/services/base/base.abstract.service';
 
 @Injectable()
-export class UserRolesService extends BaseServiceAbstract<UserRoles> {
+export class UserRolesService extends BaseServiceAbstract<UserRole> {
 	constructor(
 		@Inject('UserRolesRepositoryInterface')
 		private readonly user_roles_repository: UserRolesRepositoryInterface,
@@ -12,7 +12,7 @@ export class UserRolesService extends BaseServiceAbstract<UserRoles> {
 		super(user_roles_repository);
 	}
 
-	async findOneByCondition(condition: any): Promise<UserRoles> {
+	async findOneByCondition(condition: any): Promise<UserRole> {
 		return await this.user_roles_repository.findOneByCondition(condition);
 	}
 }

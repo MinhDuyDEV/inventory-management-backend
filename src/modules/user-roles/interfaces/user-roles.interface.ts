@@ -1,5 +1,5 @@
 import { BaseRepositoryInterface } from '@repositories/base/base.interface.repository';
-import { UserRoles } from '../entities/user-roles.entity';
+import { UserRole } from '@modules/user-roles/entities/user-roles.entity';
 
 export interface UserRolesRepositoryInterface
-	extends BaseRepositoryInterface<UserRoles> {}
+	extends BaseRepositoryInterface<UserRole> {}

@@ -1,4 +1,5 @@
-import { LocationBaseEntity } from '@modules/shared/base/location-base.entity';
+import { Address, AddressSchema } from '@modules/shared/base/address.entity';
+import { BaseEntity } from '@modules/shared/base/base.entity';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
@@ -18,7 +19,7 @@ export enum GENDER {
 		getters: true,
 	},
 })
-export class Supplier extends LocationBaseEntity {
+export class Supplier extends BaseEntity {
 	@Prop({ required: true, minlength: 2, maxlength: 60 })
 	supplier_name: string;
 
@@ -63,6 +64,13 @@ export class Supplier extends LocationBaseEntity {
 		default: [],
 	})
 	identify_image_urls: string[];
+
+	@Prop({
+		type: AddressSchema,
+	})
+	address: Address;
+
+	default_address?: string;
 }
 
 export const SupplierSchema = SchemaFactory.createForClass(Supplier);

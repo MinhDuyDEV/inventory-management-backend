@@ -1,7 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
-import { UserRoles } from '@modules/user-roles/entities/user-roles.entity';
-import { LocationBaseEntity } from '@modules/shared/base/location-base.entity';
+import { UserRole } from '@modules/user-roles/entities/user-roles.entity';
+import { BaseEntity } from '@modules/shared/base/base.entity';
+import { Address, AddressSchema } from '@modules/shared/base/address.entity';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -19,7 +20,7 @@ export enum GENDER {
 		getters: true,
 	},
 })
-export class User extends LocationBaseEntity {
+export class User extends BaseEntity {
 	@Prop({
 		required: true,
 		minlength: 2,
@@ -77,9 +78,16 @@ export class User extends LocationBaseEntity {
 
 	@Prop({
 		type: mongoose.Schema.Types.ObjectId,
-		ref: UserRoles.name,
+		ref: UserRole.name,
 	})
-	role: UserRoles;
+	role: UserRole;
+
+	@Prop({
+		type: AddressSchema,
+	})
+	address: Address;
+
+	default_address?: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

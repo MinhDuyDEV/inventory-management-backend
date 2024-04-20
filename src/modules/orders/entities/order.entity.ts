@@ -1,8 +1,9 @@
 import { OrderDetail } from '@modules/order-details/entities/order-detail.entity';
-import { LocationBaseEntity } from '@modules/shared/base/location-base.entity';
+import { Address, AddressSchema } from '@modules/shared/base/address.entity';
+import { BaseEntity } from '@modules/shared/base/base.entity';
 import { Supplier } from '@modules/suppliers/entities/supplier.entity';
 import { User } from '@modules/users/entities/user.entity';
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 
 export type OrderDocument = HydratedDocument<Order>;
@@ -13,7 +14,7 @@ export type OrderDocument = HydratedDocument<Order>;
 		updatedAt: 'updated_at',
 	},
 })
-export class Order extends LocationBaseEntity {
+export class Order extends BaseEntity {
 	@Prop({
 		required: true,
 		type: mongoose.Schema.Types.ObjectId,
@@ -45,6 +46,15 @@ export class Order extends LocationBaseEntity {
 	@Prop({ required: true })
 	total_amount: number;
 
+	@Prop({
+		type: AddressSchema,
+	})
+	address: Address;
+
+	default_address?: string;
+
 	@Prop({ required: true, enum: ['PENDING', 'COMPLETED', 'CANCELLED'] })
 	status: string;
 }
+
+export const OrderSchema = SchemaFactory.createForClass(Order);

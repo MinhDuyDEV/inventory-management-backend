@@ -1,26 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import { CreateSupplierDto } from './dto/create-supplier.dto';
-import { UpdateSupplierDto } from './dto/update-supplier.dto';
+import { Inject, Injectable } from '@nestjs/common';
+import { BaseServiceAbstract } from 'src/services/base/base.abstract.service';
+import { Supplier } from './entities/supplier.entity';
+import { SuppliersRepositoryInterface } from './interfaces/supplier.interface';
 
 @Injectable()
-export class SuppliersService {
-	create(createSupplierDto: CreateSupplierDto) {
-		return 'This action adds a new supplier';
-	}
-
-	findAll() {
-		return `This action returns all suppliers`;
-	}
-
-	findOne(id: number) {
-		return `This action returns a #${id} supplier`;
-	}
-
-	update(id: number, updateSupplierDto: UpdateSupplierDto) {
-		return `This action updates a #${id} supplier`;
-	}
-
-	remove(id: number) {
-		return `This action removes a #${id} supplier`;
+export class SuppliersService extends BaseServiceAbstract<Supplier> {
+	constructor(
+		@Inject('SuppliersRepositoryInterface')
+		private readonly suppliers_repository: SuppliersRepositoryInterface,
+	) {
+		super(suppliers_repository);
 	}
 }

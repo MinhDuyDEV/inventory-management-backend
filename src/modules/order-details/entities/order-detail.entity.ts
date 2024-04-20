@@ -1,5 +1,6 @@
 import { Order } from '@modules/orders/entities/order.entity';
 import { Product } from '@modules/products/entities/product.entity';
+import { BaseEntity } from '@modules/shared/base/base.entity';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 
@@ -11,7 +12,7 @@ export type OrderDetailDocument = HydratedDocument<OrderDetail>;
 		updatedAt: 'updated_at',
 	},
 })
-export class OrderDetail {
+export class OrderDetail extends BaseEntity {
 	@Prop({
 		required: true,
 		type: mongoose.Schema.Types.ObjectId,

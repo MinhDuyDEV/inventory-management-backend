@@ -3,8 +3,8 @@ import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserRolesService } from '@modules/user-roles/user-roles.service';
 import { USER_ROLE } from '@modules/user-roles/entities/user-roles.entity';
-import { BaseServiceAbstract } from '@modules/user-roles/services/base/base.abstract.service';
 import { UsersRepositoryInterface } from './interfaces/users.interface';
+import { BaseServiceAbstract } from 'src/services/base/base.abstract.service';
 
 @Injectable()
 export class UsersService extends BaseServiceAbstract<User> {
