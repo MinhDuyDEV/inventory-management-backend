@@ -3,7 +3,7 @@ import mongoose, { HydratedDocument } from 'mongoose';
 import { UserRole } from '@modules/user-roles/entities/user-roles.entity';
 import { BaseEntity } from '@modules/shared/base/base.entity';
 import { Address, AddressSchema } from '@modules/shared/base/address.entity';
-import { Transform, Type } from 'class-transformer';
+import { Exclude, Transform, Type } from 'class-transformer';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -59,7 +59,7 @@ export class User extends BaseEntity {
 
 	@Prop({
 		required: true,
-		select: false,
+		select: true,
 	})
 	password: string;
 
@@ -93,6 +93,10 @@ export class User extends BaseEntity {
 		{ toClassOnly: true },
 	)
 	role: UserRole;
+
+	@Prop()
+	@Exclude()
+	current_refresh_token: string;
 
 	@Prop({
 		type: AddressSchema,

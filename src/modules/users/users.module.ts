@@ -16,6 +16,6 @@ import { UserRolesModule } from '@modules/user-roles/user-roles.module';
 		UsersService,
 		{ provide: 'UsersRepositoryInterface', useClass: UsersRepository },
 	],
-	exports: [UsersService, 'UsersRepositoryInterface'],
+	exports: [UsersService],
 })
 export class UsersModule {}

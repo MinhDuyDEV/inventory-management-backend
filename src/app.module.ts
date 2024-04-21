@@ -10,6 +10,7 @@ import { ProductsModule } from '@modules/products/products.module';
 import { UserRolesModule } from '@modules/user-roles/user-roles.module';
 import { SuppliersModule } from '@modules/suppliers/suppliers.module';
 import { InventoriesModule } from '@modules/inventories/inventories.module';
+import { AuthModule } from '@modules/auth/auth.module';
 
 @Module({
 	imports: [
@@ -44,6 +45,7 @@ import { InventoriesModule } from '@modules/inventories/inventories.module';
 		UserRolesModule,
 		SuppliersModule,
 		InventoriesModule,
+		AuthModule,
 	],
 	controllers: [],
 	providers: [],

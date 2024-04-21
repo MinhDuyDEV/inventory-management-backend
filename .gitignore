@@ -3,6 +3,7 @@
 /node_modules
 
 /mongo-data
+/secure
 
 # Logs
 logs
