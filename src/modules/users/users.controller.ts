@@ -18,8 +18,10 @@ import { JwtAccessTokenGuard } from '@modules/auth/guards/jwt-access-token.guard
 import { USER_ROLE } from '@modules/user-roles/entities/user-roles.entity';
 import { Roles } from 'src/decorators/roles.decorator';
 import { RolesGuard } from '@modules/auth/guards/roles.guard';
+import { ApiTags } from '@nestjs/swagger';
 
 @UseGuards(JwtAccessTokenGuard)
+@ApiTags('users')
 @UseInterceptors(MongooseClassSerializerInterceptor(User))
 @Controller('users')
 export class UsersController {

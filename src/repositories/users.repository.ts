@@ -44,8 +44,12 @@ export class UsersRepository
 	}
 
 	async getUserWithRole(user_id: string): Promise<User> {
-		return await this.user_model
+		const user = await this.user_model
 			.findById(user_id, '-password')
-			.populate([{ path: 'role', transform: (role: UserRole) => role?.name }]);
+			.populate('role', 'name -_id');
+		if (user && user.role) {
+			user.role = user.role.name as unknown as UserRole;
+		}
+		return user;
 	}
 }

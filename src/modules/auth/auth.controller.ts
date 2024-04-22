@@ -4,7 +4,9 @@ import { SignUpDto } from './dto/sign-up.dto';
 import { LocalAuthGuard } from './guards/local.guard';
 import { RequestWithUser } from 'src/types/requests.type';
 import { JwtRefreshTokenGuard } from './guards/jwt-refresh-token.guard';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
 	constructor(private readonly authService: AuthService) {}

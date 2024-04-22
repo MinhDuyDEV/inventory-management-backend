@@ -85,13 +85,7 @@ export class User extends BaseEntity {
 		ref: UserRole.name,
 	})
 	@Type(() => UserRole)
-	@Transform(
-		(value) => {
-			console.log(value);
-			value.obj.role?.name;
-		},
-		{ toClassOnly: true },
-	)
+	@Transform((value) => value.obj.role?.name, { toClassOnly: true })
 	role: UserRole;
 
 	@Prop()

@@ -1,5 +1,5 @@
 import { BaseEntity } from '@modules/shared/base/base.entity';
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Exclude, Expose } from 'class-transformer';
 import { HydratedDocument } from 'mongoose';
 
@@ -11,6 +11,12 @@ export enum USER_ROLE {
 	SUPPLIER = 'supplier',
 }
 
+@Schema({
+	timestamps: {
+		createdAt: 'created_at',
+		updatedAt: 'updated_at',
+	},
+})
 @Exclude()
 export class UserRole extends BaseEntity {
 	@Prop({
@@ -19,8 +25,8 @@ export class UserRole extends BaseEntity {
 		enum: USER_ROLE,
 		required: true,
 	})
-	@Expose()
-	name: USER_ROLE;
+	@Expose({ name: 'role', toPlainOnly: true })
+	name: string;
 }
 
 export const UserRolesSchema = SchemaFactory.createForClass(UserRole);
